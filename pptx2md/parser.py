@@ -16,6 +16,8 @@ from __future__ import print_function
 
 import logging
 import os
+import PIL
+import io
 from functools import partial
 from operator import attrgetter
 from typing import List, Union
@@ -164,7 +166,7 @@ def process_picture(config: ConversionConfig, shape, slide_idx) -> Union[ImageEl
         picture_count += 1
 
     if config.min_img_size is not None:
-        img = Image.open(shape.image.blob)
+        img = PIL.Image.open(io.BytesIO(shape.image.blob))
         if img.width < config.min_img_size or img.height < config.min_img_size:
             logger.warning(f'Image {output_path} in slide {slide_idx} is too small, skipped.')
             return None
