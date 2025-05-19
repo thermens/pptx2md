@@ -81,6 +81,8 @@ class ConversionConfig(BaseModel):
     keep_similar_titles: bool = False
     """Keep similar titles (allow for repeated slide titles - One or more - Add (cont.) to the title)"""
 
+    min_img_size: int | None = None
+
 
 class ElementType(str, Enum):
     Title = "Title"

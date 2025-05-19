@@ -81,6 +81,7 @@ def parse_args() -> ConversionConfig:
         min_block_size=args.min_block_size,
         page=args.page,
         keep_similar_titles=args.keep_similar_titles,
+        min_img_size=None,
     )
 
 

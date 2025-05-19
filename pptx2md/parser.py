@@ -163,6 +163,12 @@ def process_picture(config: ConversionConfig, shape, slide_idx) -> Union[ImageEl
         f.write(shape.image.blob)
         picture_count += 1
 
+    if config.min_img_size is not None:
+        img = Image.open(shape.image.blob)
+        if img.width < config.min_img_size or img.height < config.min_img_size:
+            logger.warning(f'Image {output_path} in slide {slide_idx} is too small, skipped.')
+            return None
+
     # normal images
     if pic_ext != 'wmf':
         return ImageElement(path=img_outputter_path, width=config.image_width)
